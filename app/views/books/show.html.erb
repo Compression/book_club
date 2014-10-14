@@ -1,6 +1,29 @@
-<h2> <%= @book.title %> </h2>
-<p><%= @book.author %>
-<%= @book.year %>
-<%= @book.description %>
-<%= @book.category %>
+<h2> Title: <%= @book.title %> </h2><br><br>
+<p>Author: <%= @book.author %><br>
+Year: <%= @book.year %><br>
+Description:<%= @book.description %><br>
+Category: <%= @book.category %><br>
+<br><br>
+
+<ul>
+  <% if !@book.reviews.empty? %>
+    <% @book.reviews.each do |review| %>
+      <li>
+        <blockquote><%= review.review %></blockquote>
+        <blockquote><%= review.rating %></blockquote>
+        <blockquote><%= review.created_at %></blockquote>
+    </li>
+    <% end %>
+  <% else %>
+    <p>There are no reviews yet! Make one!</p>
+  <% end %>
+</ul>
+
+<br><br>
+<%= link_to 'Leave a Review',  new_book_review_path(@book) %>
+
+<br><br>
+
+<%= link_to 'Back to Books', books_path %>
+
 </p>
