@@ -25,7 +25,7 @@
 
 <p>
   <%= f.label :year %>
-  <%= f.text_field :year %>
+  <%= f.number_field(:year, in: 0..2014) %>
 </p>
 
 <p>

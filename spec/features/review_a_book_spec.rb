@@ -8,7 +8,8 @@ feature "new review" do
   scenario "user creates a review" do
     visit new_book_review_path(@book)
 
-    fill_in "Write a review", with: "I absolutely LOVE this book"
+    fill_in "Write a review:", with: "I absolutely LOVE this book"
+    fill_in "Leave a rating:", with: "5"
     click_button "Create Review"
 
     expect(page).to have_content("I absolutely LOVE this book")
@@ -21,5 +22,6 @@ feature "new review" do
     click_button "Create Review"
 
     expect(page).to have_content("fael review lol, try again wow")
+    expect(Review.count).to eq(0)
   end
 end

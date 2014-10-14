@@ -18,4 +18,18 @@ feature 'submit book' do
     expect(page).to have_content("White guy hates black guys, goes to jail, likes them.")
     expect(page).to have_content("Fiction")
   end
+
+  scenario 'user submits invalid book' do
+
+    visit "/books/new"
+
+    fill_in "Title", with: ""
+    fill_in "Author", with: ""
+    fill_in "Year", with: ""
+    fill_in "Description", with: ""
+    fill_in "Category", with: ""
+    click_button "Create Book"
+
+    expect(Book.count).to eq(0)
+  end
 end
