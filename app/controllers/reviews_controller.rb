@@ -1,5 +1,10 @@
 class ReviewsController < ApplicationController
 
+  def new
+    @review = Review.new
+    @book = Book.find(params[:book_id])
+  end
+
   def create
     @book = Book.find(params[:book_id])
     @review = Review.new(review_params)
@@ -8,14 +13,9 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to book_path(@book)
     else
-      flash[:alert] = "fael review lol, try again wow"
+      flash[:notice] = "fael review lol, try again wow"
       render "books/show"
     end
-  end
-
-  def new
-    @review = Review.new
-    @book = Book.find(params[:book_id])
   end
 
   def show
