@@ -20,6 +20,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.includes(:reviews).find(params[:id])
+    @review = @book.reviews
   end
 
   # def edit
